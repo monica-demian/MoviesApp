@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+    id "androidx.navigation.safeargs.kotlin"
+
+}
+android {
+    namespace 'com.monica.moviesapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.monica.moviesapp"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_URL", "\"" + "c9856d0cb57c3f14bf75bdc6c063b8f3" + "\""
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+
+dependencies {
+    def hilt_version = "2.44"
+    def retrofit_version="2.6.4"
+    def okhttp_version="3.12.13"
+    def ktx_version = "1.10.0"
+    def app_compat_version = "1.6.1"
+    def material_version = "1.8.0"
+    def constraint_version = "2.1.4"
+    def navigation_version = "2.5.3"
+    def viewModel_version="2.6.1"
+    def glide_version="4.15.1"
+
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+
+    //viewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+
+}
